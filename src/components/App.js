@@ -28,9 +28,9 @@ const App = () => {
           }
           
           console.log(count);
-          if(count<6){
+         
             setTimer(count);
-          }
+          
           count--;
         },1000);
        }else{
