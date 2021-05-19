@@ -4,7 +4,7 @@ import { Component, useEffect, useState,useRef } from "react";
 import "./../styles/App.css";
 
 
-function App {
+function App() {
     const [getCounter,setCounter] = useState(0);
     const [getValue,setValue] = useState(0);
     const ref = useRef();
