@@ -11,7 +11,7 @@ function App() {
     useEffect(()=>{
       
       clearInterval(ref.current);
-      if(getCounter!=0){
+      if(getCounter>-1){
           let count = getCounter;
         ref.current = setInterval(()=>{
             
