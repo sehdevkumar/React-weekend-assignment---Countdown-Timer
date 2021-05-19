@@ -27,10 +27,10 @@ function App() {
     },[getCounter]);
 
     const callerKey = (e)=>{
-        if(e.key==="Enter"){
+//         if(e.key==="Enter"){
 
             setCounter(Math.floor(e.target.value));
-        }
+//         }
     }
     function updateME(e){
         set(e.target.value);
