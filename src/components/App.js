@@ -1,54 +1,45 @@
-import React, { Component, useState, useEffect } from "react";
-import '../styles/App.css';
+import React from 'react'
 
-const App = () => {
-  const [getData,setData] = useState(0);
-  const [getStop,setStop] = useState(true);
-  const [getTimer,setTimer] = useState("");
-  // write your code here 
-  useEffect(()=>{
-    countDownTimer();
-  },[getData,getStop]);
-  const callerKey = (e)=>{
-      if(e.key==="Enter"){
-          setStop(false);
-          setData(Math.floor(e.target.value));
-      }
-  }    
-  function countDownTimer(){
-       let count = getData;
-       
-     
-       if(count>=0){
-        let myInterVal= setInterval(()=>{
-          if(count<0 || !getStop){
-            clearInterval(myInterVal);
-            setStop(true);
-            return;
-          }
-          
-          console.log(count);
-         
-            setTimer(count);
-          
-          count--;
-        },1000);
-       }else{
-         return;
-       }
+import { Component, useEffect, useState,useRef } from "react";
+import "./../styles/App.css";
+
+
+function App {
+    const [getCounter,setCounter] = useState(0);
+    const [getValue,setValue] = useState(0);
+    const ref = useRef();
+    useEffect(()=>{
       
-  }
-  return (
-    <div className="wrapper">
-      <div id="whole-center">
-        <h1>
-          Reverse countdown for<input id="timeCount" onKeyDown={callerKey} /> sec.
-        </h1>
-      </div>
-      <div id="current-time">{getTimer}</div>
-    </div>
-  )
-}
+      clearInterval(ref.current);
+      if(getCounter!=0){
+          let count = getCounter;
+        ref.current = setInterval(()=>{
+            
+            setValue(count);
+             count--;
+             if(count<0){
+                 clearInterval(ref.current);
+             }
+        },1000);
+      }
+     
+    },[getCounter]);
 
+    const callerKey = (e)=>{
+        if(e.key==="Enter"){
+            setCounter(Math.floor(e.target.value));
+        }
+    }
+    return (
+        <div className="wrapper">
+            <div id="whole-center">
+                <h1>
+                    Reverse countdown for<input type="number" id="timeCount" onKeyDown={callerKey} /> sec.
+              </h1>
+            </div>
+            <div id="current-time">{getValue}</div>
+        </div>
+    )
+}
 
 export default App;
