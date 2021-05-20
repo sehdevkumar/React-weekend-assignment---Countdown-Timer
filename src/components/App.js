@@ -5,44 +5,39 @@ import "./../styles/App.css";
 
 
 const App=()=>{
-    const [getCounter,setCounter] = useState(0);
-    const [getValue,setValue] = useState(0);
-    const [get,set] = useState(0);
-    const ref = useRef();
-    useEffect(()=>{
-      
-      clearInterval(ref.current);
-      if(getCounter>-1){
-          let count = getCounter;
-        ref.current = setInterval(()=>{
-            
-            setValue(count);
-             count--;
-             if(count<0){
-                 clearInterval(ref.current);
-             }
-        },1000);
-      }
-     
-    },[getCounter]);
+    const [getCounter, setCounter] = useState(0);
+  const [getCount,setCount] = useState(0);
 
-    const callerKey = (e)=>{
-//         if(e.key==="Enter"){
+  useEffect(() => {
 
-            setCounter(Math.floor(e.target.value));
-//         }
+    setTimeout(() => {
+
+      getCounter > 0 && setCounter(getCounter - 1);
+
+    //   console.log(getCounter);
+       setCount(getCounter);
+
+    }, 1000);
+
+  }, [getCounter]);
+
+  const callerKey = (e) => {
+
+    if (e.key === "Enter" ) {
+
+      setCounter(Math.floor(e.target.value));
+
     }
-    function updateME(e){
-        set(e.target.value);
-    }
+
+  };
     return (
         <div className="wrapper">
             <div id="whole-center">
                 <h1>
-                    Reverse countdown for<input value={get} onChange={updateME}  type="number" id="timeCount" onKeyDown={callerKey} /> sec.
+                    Reverse countdown for<input   type="number" id="timeCount" onKeyDown={callerKey} /> sec.
               </h1>
             </div>
-            <div id="current-time">{getValue}</div>
+            <div id="current-time">{getCount}</div>
         </div>
     )
 }
