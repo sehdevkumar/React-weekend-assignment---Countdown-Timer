@@ -5,7 +5,7 @@ import "./../styles/App.css";
 
 
 const App=()=>{
-    const [getCounter, setCounter] = useState(0);
+     const [getCounter, setCounter] = useState(0);
   const [getCount,setCount] = useState(0);
 
   useEffect(() => {
@@ -24,8 +24,13 @@ const App=()=>{
   const callerKey = (e) => {
 
     if (e.key === "Enter" ) {
-
-      setCounter(Math.floor(e.target.value));
+      if(!isNaN(e.target.value))
+       {
+           if(e.target.value>-1){
+            setCounter(Math.floor(e.target.value));
+           }
+       }
+       
 
     }
 
@@ -34,7 +39,7 @@ const App=()=>{
         <div className="wrapper">
             <div id="whole-center">
                 <h1>
-                    Reverse countdown for<input   type="number" id="timeCount" onKeyDown={callerKey} /> sec.
+                    Reverse countdown for<input  id="timeCount" onKeyDown={callerKey} /> sec.
               </h1>
             </div>
             <div id="current-time">{getCount}</div>
